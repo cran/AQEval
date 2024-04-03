@@ -54,10 +54,12 @@ isolation model; ignore for now (in development).}
 
 \item{formula}{(optional) Signal isolate model formula;
 this allows user to set the signal isolation model formula
-directly, but means other formula terms (\code{background},
-\code{deseason} and \code{deweather}) will be ignored.}
+directly, but means function arguments \code{background},
+\code{deseason} and \code{deweather} will be ignored.}
 
-\item{output}{output options; ignore for now (in development)}
+\item{output}{output options; currently, \code{'mean'}, \code{'model'},
+and \code{'all'}; but please note these are in development and may be
+subject to change.}
 
 \item{...}{other arguments; ignore for now (in development)}
 }
@@ -76,22 +78,22 @@ deseasonalisation and/or deweathering.
 subtracts \code{pollutant} variance associated with
 factors that may hinder break-point/segment analysis:
 \itemize{
- \item{\strong{Background Correction}}{ If applied, this fits
+ \item \strong{Background Correction} If applied, this fits
  the supplied \code{background} time-series as a
- spline term: \code{s(background)}.}
- \item{\strong{Seasonality}}{ If applied, this fits regular
+ spline term: \code{s(background)}.
+ \item \strong{Seasonality} If applied, this fits regular
  frequency terms, e.g. \code{day.hour}, \code{year.day},
  as spline terms, default TRUE is equivalent to
  \code{s(day.hour)} and \code{s(year.day)}. All terms are
- calculated from \code{date} column in \code{data}.}
- \item{\strong{Weather}}{ If applied, this fits time-series of
+ calculated from \code{date} column in \code{data}.
+ \item \strong{Weather} If applied, this fits time-series of
  identified meteorological measurements, e.g. wind speed
  and direction (\code{ws} and \code{wd} in \code{data}).
  If both \code{ws} and \code{wd} are present these are
  fitted as a tensor term \code{te(ws, wd)}. Other
  \code{deweather}ing terms, if included, are fitted
  as spline term \code{s(term)}. The default \code{TRUE}
- is equivalent to \code{te(ws, wd)}.}
+ is equivalent to \code{te(ws, wd)}.
 }
 Using the supplied arguments, it builds a signal
 (\code{\link{mgcv}}) GAM model, calculates,
@@ -125,8 +127,7 @@ Wood (2017) for general introduction and package
 documentation regarding coding (\code{\link{mgcv}}):
 
 Wood, S.N. (2017) Generalized Additive Models:
-an introduction with R (2nd edition), CRC, DOI:
-\doi{10.1201/9781420010404}.
+an introduction with R (2nd edition), Chapman and Hall/CRC.
 
 Regarding \code{isolateContribution}, see:
 
@@ -134,8 +135,8 @@ Ropkins et al (In Prep).
 }
 \seealso{
 Regarding seasonal terms and frequency
-analysis, see \code{\link{stl}} and
-\code{\link{spectralFrequency}}
+analysis, see also \code{\link{stl}} and
+\code{\link{spectralFrequency}}.
 
 \code{\link{mgcv}}, \code{\link{gam}}.
 }
